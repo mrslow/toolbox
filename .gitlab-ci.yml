@@ -1,0 +1,29 @@
+before_script:
+  - echo "Preparing environment..."
+  - pip install -r requirements/test.txt
+
+tests:py36:
+  tags:
+    - python
+  script:
+    - echo "Running tests for python 3.6…"
+    - python --version
+    - python -m pytest
+
+tests:py37:
+  tags:
+    - python
+  image: python:3.7
+  script:
+    - echo "Running tests for python 3.7…"
+    - python --version
+    - python -m pytest
+
+tests:py38:
+  tags:
+    - python
+  image: python:3.8
+  script:
+    - echo "Running tests for python 3.8…"
+    - python --version
+    - python -m pytest
