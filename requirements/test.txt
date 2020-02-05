@@ -1,3 +1,6 @@
+-r core.txt
+cheroot
 pytest
+pytest-asyncio
 pytest-coverage
-pytest-pep8
+wsgidav
