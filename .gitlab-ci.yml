@@ -1,3 +1,11 @@
+variables:
+  POSTGRES_DB: test_db
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: ""
+
+services:
+  - postgres:9.6
+
 before_script:
   - echo "Preparing environment..."
   - pip install -r requirements/test.txt

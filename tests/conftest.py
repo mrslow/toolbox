@@ -2,10 +2,24 @@ import pytest
 import time
 
 from aiohttp import ClientConnectionError, ClientSession
-from toolbox import WebDavClient
+from toolbox import WebDavClient, DBPool
 from multiprocessing import Process
 
 from .webdav_server import LocalWebdavServer
+
+db_config = {
+    'host': 'postgres',
+    'user': 'postgres',
+    'database': 'test_db'
+}
+
+
+@pytest.fixture
+async def db():
+    pool = DBPool(db_config)
+    await pool.create()
+    yield pool
+    await pool.close()
 
 
 @pytest.fixture

@@ -33,25 +33,25 @@ _class_ toolbox.**WebDavClient**(host, port=80, loop=None)
 
 ---
 
-**upload**(fileobj, remote_path)  
+_coroutine_ **upload**(fileobj, remote_path)  
 Сохраняет содержимое fileobj по укзанному в remote_path пути. 
 * **fileobj** (BytesIO) - содержимое для записи
 * **remote_path** (str) - путь, где будет записан файл
 
 ---
 
-**download**(remote_path, fileobj)  
+_coroutine_ **download**(remote_path, fileobj)  
 Получает содержимое файла по указанному в remote_path пути и помещает его в fileobj.
 * **remote_path** (str) - путь к файлу, который надо получить
 * **fileobj** (BytesIO) - полученное содержимое
 
 ---
 
-**delete**(remote_path)  
+_coroutine_ **delete**(remote_path)  
 Передает вебдав серверу команду на удаление файла или директории.
 * **remote_path** (str) - путь к файлу, который будет удален
 
 ---
 
-**close**()  
+_coroutine_ **close**()  
 Закрывает соединение с вебдав сервером.
