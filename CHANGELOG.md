@@ -1,5 +1,14 @@
 # Changelog
 
+#### **2020-02-10 (master)**
+
+##### Изменено
+- В тесте таймаута DBPool'а теперь ожидается не concurrent.futures.TimeoutError, а asyncio.TimeoutError.
+
+##### Исправлено
+- Имя пакета-зависимости asyncpg в setup.py.
+
+
 #### **2020-02-07 (master)**
 
 ##### Добавлено

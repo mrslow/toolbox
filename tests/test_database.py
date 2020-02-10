@@ -1,4 +1,4 @@
-from concurrent.futures import TimeoutError
+from asyncio import TimeoutError
 import pytest
 from asyncpg.exceptions import StringDataRightTruncationError
 from toolbox import DBPool
