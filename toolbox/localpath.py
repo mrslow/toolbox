@@ -55,3 +55,6 @@ class LocalPath(os.PathLike):
 
     def encode(self, fmt) -> bytes:
         return self.path.encode(fmt)
+
+    def exist(self):
+        return os.path.exists(self.path)

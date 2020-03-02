@@ -1,0 +1,10 @@
+database:
+    test_db:
+        host: localhost
+        user: postgres
+        password: ''
+        database: test_db
+
+redis:
+    host: localhost
+    port: 6397

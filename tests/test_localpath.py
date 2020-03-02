@@ -103,3 +103,21 @@ def test_encode(tmpdir):
 
     assert isinstance(encoded_local_path, bytes)
     assert encoded_local_path.decode() == tmpdir
+
+
+def test_exist(tmpdir):
+    not_exist_file = tmpdir.join('test_0.zip')
+    exist_file = tmpdir.join('test_1.zip')
+    exist_file.write('dummy')
+    not_exist_dir = tmpdir.join('test_0/')
+    exist_dir = tmpdir.ensure_dir('test_1/')
+
+    local_path_not_exist_file = LocalPath(str(not_exist_file))
+    local_path_exist_file = LocalPath(str(exist_file))
+    local_path_not_exist_dir = LocalPath(str(not_exist_dir))
+    local_path_exist_dir = LocalPath(str(exist_dir))
+
+    assert local_path_not_exist_file.exist() is False
+    assert local_path_exist_file.exist() is True
+    assert local_path_not_exist_dir.exist() is False
+    assert local_path_exist_dir.exist() is True

@@ -1,17 +1,17 @@
-import pytest
+import os
 import time
-
+from multiprocessing import Process
+import pytest
 from aiohttp import ClientConnectionError, ClientSession
 from toolbox import WebDavClient, DBPool
-from multiprocessing import Process
-
 from .webdav_server import LocalWebdavServer
 
-db_config = {
-    'host': 'postgres',
-    'user': 'postgres',
-    'database': 'test_db'
-}
+test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
+db_yaml_path = os.path.join(test_data_dir, 'database.yaml')
+env_yaml_path = os.path.join(test_data_dir, 'environ.yaml')
+variables_path = os.path.join(test_data_dir, 'variables.py')
+# db_config = dict(host='localhost', user='postgres', database='postgres')  # for local test
+db_config = dict(host='postgres', user='postgres', database='test_db')
 
 
 @pytest.fixture
@@ -45,7 +45,7 @@ async def ensure_server_initialized(server_process):
                         break
         except ClientConnectionError:
             pass
-        except Exception as exc:
+        except Exception:
             server_process.terminate()
 
         time.sleep(0.1)
