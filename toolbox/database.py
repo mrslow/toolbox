@@ -5,7 +5,7 @@ import asyncpg
 class DBPool:
     def __init__(self, config, size=10) -> None:
         self._pool = None
-        self._codec = None
+        self._codec_list = []
         self.closed = False
         self.config = config
         self.size = size
@@ -15,18 +15,21 @@ class DBPool:
                   format='text',
                   encoder,
                   decoder) -> None:
-        async def codec(con):
-            await con.set_type_codec(typename,
-                                     schema=schema,
-                                     encoder=encoder,
-                                     decoder=decoder,
-                                     format=format)
+        self._codec_list.append({
+            'typename': typename,
+            'schema': schema,
+            'encoder': encoder,
+            'decoder': decoder,
+            'format': format,
+        })
 
-        self._codec = codec
+    async def _codecs(self, con):
+        for codec in self._codec_list:
+            await con.set_type_codec(**codec)
 
     async def create(self) -> None:
         self._pool = await asyncpg.create_pool(**self.config,
-                                               init=self._codec,
+                                               init=self._codecs,
                                                min_size=self.size,
                                                max_size=self.size)
 

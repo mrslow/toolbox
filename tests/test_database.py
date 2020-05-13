@@ -81,9 +81,11 @@ async def test_transaction_rollback(db, tmp_table):
     assert await db.fetchval('select count(*) from tmp_table') == 0
 
 
-async def test_codec():
+async def test_codecs():
     db = DBPool(db_config)
     db.set_codec('int4', encoder=lambda v: v, decoder=str)
+    db.set_codec('varchar', encoder=lambda v: v, decoder=int)
     await db.create()
 
-    assert await db.fetchval('select 1::integer') == '1'
+    assert await db.fetchval("select 1::integer") == '1'
+    assert await db.fetchval("select '1'::varchar") == 1

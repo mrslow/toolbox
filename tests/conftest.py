@@ -11,7 +11,8 @@ db_yaml_path = os.path.join(test_data_dir, 'database.yaml')
 env_yaml_path = os.path.join(test_data_dir, 'environ.yaml')
 variables_path = os.path.join(test_data_dir, 'variables.py')
 # db_config = dict(host='localhost', user='postgres', database='postgres')  # for local test
-db_config = dict(host='postgres', user='postgres', database='test_db')
+db_config = dict(
+    host='postgres', user='postgres', database='test_db', password='pswrd')
 
 
 @pytest.fixture

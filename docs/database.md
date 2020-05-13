@@ -64,7 +64,7 @@ _coroutine_ **fetchrow**(query, *args, timeout=None)
 Выполняет запрос. В результате возвращает одну строку (asyncpg.Record).
 
 _coroutine_ **fetchval**(query, *args, timeout=None)  
-Выполняет запрос. В результате возвращает значение, тип которого определен в [таблице конвертации](https://magicstack.github.io/asyncpg/current/usage.html#type-conversion).
+Выполняет запрос. В результате возвращает значение, тип которого определен либо установленным кодеком, либо в [таблице конвертации](https://magicstack.github.io/asyncpg/current/usage.html#type-conversion).
 
 _coroutine_ **execute**(query, *args, timeout=None)  
 Выполняет команду(-ы). В результате возвращает строку (str) со статусом выполнения.

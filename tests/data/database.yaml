@@ -2,7 +2,7 @@ database:
     test_db:
         host: localhost
         user: postgres
-        password: ''
+        password: 'pswrd'
         database: test_db
 
 redis:
